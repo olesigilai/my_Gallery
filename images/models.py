@@ -43,6 +43,15 @@ class Image(models.Model):
     name = models.CharField(max_length=55)    
     category = models.ForeignKey(Category, on_delete=models.DO_NOTHING)
     location = models.ForeignKey(Location, on_delete = models.DO_NOTHING)
+
+    def save_image(self):
+        self.save()
     
+    def delete_image(self):
+        self.delete()
+        
+    @classmethod
+    def update_image(cls, id, value):
+        cls.objects.filter(id=id).update(image=value)
 
 
