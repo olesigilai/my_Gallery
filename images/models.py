@@ -35,3 +35,14 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+class Image(models.Model):
+    image = CloudinaryField('image')
+    description = models.TextField()
+    author = models.CharField(max_length=55, default='admin')
+    date = models.DateTimeField(auto_now_add=True)
+    name = models.CharField(max_length=55)    
+    category = models.ForeignKey(Category, on_delete=models.DO_NOTHING)
+    location = models.ForeignKey(Location, on_delete = models.DO_NOTHING)
+    
+
+
