@@ -20,3 +20,13 @@ def search_location(request):
     else:
         message = "You haven't searched for any image lacation"
         return render(request, 'location.html', {"message": message})
+
+def search_results(request):
+    if 'category' in request.GET and request.GET["category"]:
+        category = request.GET.get("category")
+        searched_images = Image.search_by_category(category)
+        message = f"{category}"
+        return render(request, 'search.html', {"message": message, "images": searched_images})
+    else:
+        message = "You haven't searched for any image category"
+        return render(request, 'search.html', {"message": message})
