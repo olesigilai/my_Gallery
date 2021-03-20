@@ -8,6 +8,13 @@ import datetime as dt
 class Location(models.Model):
     name = models.CharField(max_length = 55)
 
+    def save_location(self):
+        self.save()
+
+    def delete_location(self):
+        self.delete()
+        
+    
     @classmethod
     def update_location(cls,id,value):
         cls.objects.filter(id=id).update(name = value)
