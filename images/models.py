@@ -28,7 +28,7 @@ class Category(models.Model):
     def delete_category(self):
         self.delete()
 
-        @classmethod
+    @classmethod
     def update_category(cls, id, value):
         cls.objects.filter(id=id).update(name = value)
         

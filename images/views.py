@@ -18,7 +18,7 @@ def search_location(request):
         print("Image.......",searched_images)
         return render(request, 'location.html', {"message": message, "images": searched_images})
     else:
-        message = "You haven't searched for any image lacation"
+        message = "You haven't searched for any image location"
         return render(request, 'location.html', {"message": message})
 
 def search_results(request):
