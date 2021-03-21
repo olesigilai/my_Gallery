@@ -87,3 +87,8 @@ class CategoryTestClass(TestCase):
         self.category.update_category(self.category.id, 'Football')
         changed_category = Category.objects.filter(name ='Football')
         self.assertTrue(len(changed_category) > 0)
+    
+    def tearDown(self):
+            Location.objects.all().delete()
+            Category.objects.all().delete()
+            Image.objects.all().delete()
