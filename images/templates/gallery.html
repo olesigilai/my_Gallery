@@ -1,0 +1,62 @@
+{%extends 'base.html'%}
+{% load bootstrap3 %}
+{% block content %}
+{{ block.super}}
+<style>
+    body{
+        background-color: aliceblue;
+    }
+</style>
+</style>
+<div class="container">
+    <div class="row">
+        <div class="col-md-">
+            <!-- <!Looping through images -->
+            {% for image in images %}
+
+            <!--Display all images  -->
+            <div class="col-md-4" data-toggle="modal" data-target="#{{image.id}}">
+                <div class="card card2">
+                    <img src="{{image.image.url}}" alt="{{image.name}}" class="card-img" height="100%" width="100%">
+                </div>
+            </div>
+
+
+            <div class="modal fade " id="{{image.id}}" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
+                <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+                    <div class="modal-content modalcard">
+                        <div class="modal-header" >
+                            <h5 class="modal-title" id="imageheader"  >{{image.name}} </h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body card3">
+                            <img src="{{image.image.url}}" alt="{{image.name}}" class="img-fluid" height="100%" width="100%">
+                            <p class="text-center">{{image.description}}</p>
+                            <p class="image-location">location : {{image.location}}</p>
+                            <p class="image-location">category : {{image.category}}</p>
+                            <p class="image-location">posted on : {{ image.date }}</p>
+                        </div>
+                        <div class="modal-footer">
+                            <input class="form-control input-lg" type="text" value="{{image.image.url}}" id="{{image.id}}.url">
+                            <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Close
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            {% empty %}
+            <div class="row">
+                <h2 class="text-center">No Images found</h2>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}
