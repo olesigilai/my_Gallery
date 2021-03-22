@@ -41,8 +41,8 @@ class Image(models.Model):
     author = models.CharField(max_length=55, default='admin')
     date = models.DateTimeField(auto_now_add=True)
     name = models.CharField(max_length=55)    
-    category = models.ForeignKey(Category, on_delete=models.DO_NOTHING)
-    location = models.ForeignKey(Location, on_delete = models.DO_NOTHING)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    location = models.ForeignKey(Location, on_delete = models.CASCADE)
 
     def save_image(self):
         self.save()
@@ -61,7 +61,7 @@ class Image(models.Model):
 
     @classmethod
     def search_by_category(cls, category):
-        images = cls.objects.filter(category__name__icontains=category)
+        images = cls.objects.filter(category__name__contains=category)
         return images
     
     @classmethod
