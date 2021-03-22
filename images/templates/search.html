@@ -6,7 +6,7 @@
         {% if images%}
         <h2>Found {{ images|length }} of {{message}} Category.</h2>
         {% else %}
-        <h2> Found 0 images for the {{message}} Category</h2>
+        <h2> {{message}} Category</h2>
         {% endif %}
 
         {% if images %}
@@ -40,6 +40,18 @@
                             <input class="form-control input-lg" type="text" value="{{image.image.url}}" id="{{image.id}}.url">
                             <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Close
                             </button>
+                            <button type="button" class="btn btn-danger btn-sm" onclick="myFunction( '{{image.id}}.url')">copy 
+                            </button> 
+                            {%block script%}
+                            <script>
+                                
+                                    myFunction = (element) => {
+                                    document.getElementById(element).select();
+                                    document.execCommand("copy");
+                                    }
+                                    
+                            </script> 
+                                {%endblock%}
                         </div>
                     </div>
                 </div>
