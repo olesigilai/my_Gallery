@@ -52,6 +52,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'gallery.urls'
@@ -124,6 +125,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
@@ -135,3 +137,6 @@ cloudinary.config(
   api_key = "184669899841343", 
   api_secret = "1krPT74raN-oqFRpnTXYLLilNdo" 
 )
+
+# Configure Django App for Heroku.
+django_heroku.settings(locals())
